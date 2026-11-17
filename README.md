@@ -15,6 +15,19 @@ The site is configured to publish from the `main` branch at the repository root.
 
 GitHub Pages hosting uses the free `github.io` address and current plan/usage limits. A custom domain is optional and is not configured.
 
+## Help people find the India bank-hold guide
+
+The guide has its own shareable URL: <https://iamkuldeepdubey.github.io/Unstuck/bank-account-lien-india.html>. The root `sitemap.xml` lists that page and the home page.
+
+To request Google indexing (not a guarantee):
+
+1. In [Google Search Console](https://search.google.com/search-console), add the URL-prefix property `https://iamkuldeepdubey.github.io/Unstuck/`.
+2. Verify ownership using a method Search Console offers. If it provides an HTML verification file, place that file at this repository's root and commit it before verifying.
+3. Submit `https://iamkuldeepdubey.github.io/Unstuck/sitemap.xml` in the property's **Sitemaps** section.
+4. Use **URL Inspection** on the bank-hold guide and choose **Request indexing**.
+
+Google says crawling can take days to weeks and that a request does not guarantee inclusion in search results. Search Console requires access to a Google account that can verify this site.
+
 ## Scope and trust
 
 - Google does not publish a measure or ranking of which search answers leave users dissatisfied. The initial topics are practical support questions, not a claimed Google ranking or satisfaction study.
