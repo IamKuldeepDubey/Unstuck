@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f7f2">
+  <meta name="description" content="Clear, practical answers for everyday technology problems, with sources and next steps.">
+  <title>Unstuck — practical tech answers</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #17241f;
+      --muted: #64736c;
+      --paper: #f5f7f2;
+      --surface: #fff;
+      --line: #dfe6df;
+      --green: #236d52;
+      --green-dark: #174e3b;
+      --mint: #e7f2eb;
+      --orange: #e8a44b;
+      --shadow: 0 18px 48px rgba(27, 55, 42, .08);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font: 16px/1.6 "Segoe UI", Arial, sans-serif;
+    }
+
+    a { color: var(--green-dark); }
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 3px solid var(--orange);
+      outline-offset: 3px;
+    }
+
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+    .wrap { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+    .topbar { display: flex; align-items: center; justify-content: space-between; padding: 22px 0; }
+    .brand { display: inline-flex; gap: 10px; align-items: center; color: var(--ink); text-decoration: none; font-weight: 800; letter-spacing: -.04em; font-size: 1.25rem; }
+    .brand-mark { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 11px; color: white; background: var(--green); font-size: 18px; }
+    .top-note { color: var(--muted); font-size: .9rem; }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: clamp(32px, 7vw, 78px);
+      border-radius: 26px;
+      background: #e8f0e9;
+      box-shadow: var(--shadow);
+    }
+
+    .hero::after {
+      position: absolute;
+      right: -40px;
+      bottom: -155px;
+      width: 370px;
+      height: 370px;
+      border: 1px solid rgba(35, 109, 82, .15);
+      border-radius: 50%;
+      box-shadow: 0 0 0 34px rgba(35, 109, 82, .035), 0 0 0 72px rgba(35, 109, 82, .035);
+      content: "";
+      pointer-events: none;
+    }
+
+    .eyebrow { margin: 0 0 12px; color: var(--green-dark); font-size: .76rem; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
+    h1 { max-width: 670px; margin: 0; font-size: clamp(2.5rem, 7vw, 5rem); line-height: .99; letter-spacing: -.065em; }
+    .hero-copy { max-width: 580px; margin: 20px 0 26px; color: #43564c; font-size: 1.08rem; }
+    .search { position: relative; z-index: 1; display: flex; max-width: 700px; gap: 10px; }
+    .search input { min-width: 0; flex: 1; padding: 15px 17px; border: 1px solid #c9d7cc; border-radius: 12px; background: white; color: var(--ink); font: inherit; }
+    .search button, .google-link { border: 0; border-radius: 12px; background: var(--green); color: white; font: inherit; font-weight: 700; text-decoration: none; }
+    .search button { padding: 0 22px; cursor: pointer; }
+    .search button:hover, .google-link:hover { background: var(--green-dark); }
+    .search-hint { position: relative; z-index: 1; margin: 11px 0 0; color: #52665b; font-size: .85rem; }
+
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin: 52px 0 20px; }
+    .section-head h2 { margin: 0; font-size: clamp(1.7rem, 4vw, 2.4rem); letter-spacing: -.05em; }
+    .section-head p { margin: 4px 0 0; color: var(--muted); }
+    .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+    .filter { padding: 8px 14px; border: 1px solid var(--line); border-radius: 999px; background: transparent; color: #45554d; font: inherit; font-size: .9rem; cursor: pointer; }
+    .filter[aria-pressed="true"] { border-color: var(--green); background: var(--green); color: white; }
+
+    .cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .card { display: flex; flex-direction: column; padding: 24px; border: 1px solid var(--line); border-radius: 18px; background: var(--surface); box-shadow: 0 7px 22px rgba(27, 55, 42, .035); }
+    .card[hidden] { display: none; }
+    .card-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .tag { padding: 5px 10px; border-radius: 999px; background: var(--mint); color: var(--green-dark); font-size: .78rem; font-weight: 700; }
+    .time { color: var(--muted); font-size: .8rem; }
+    .card h3 { margin: 14px 0 8px; font-size: 1.35rem; line-height: 1.25; letter-spacing: -.03em; }
+    .summary { margin: 0 0 16px; color: #526159; }
+    .steps { margin: 0; padding-left: 1.25rem; }
+    .steps li { padding: 0 0 9px 3px; }
+    .steps li::marker { color: var(--green); font-weight: 700; }
+    .caution { margin: 7px 0 0; padding: 12px 14px; border-left: 3px solid var(--orange); border-radius: 0 9px 9px 0; background: #fff8eb; color: #594524; font-size: .9rem; }
+    .source { margin-top: 17px; padding-top: 14px; border-top: 1px solid var(--line); color: var(--muted); font-size: .87rem; }
+    .source a { font-weight: 700; }
+    .card-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .vote { padding: 8px 12px; border: 1px solid var(--line); border-radius: 9px; background: white; color: #31453a; font: inherit; font-size: .85rem; cursor: pointer; }
+    .vote:hover { border-color: var(--green); color: var(--green-dark); }
+    .vote[aria-pressed="true"] { border-color: var(--green); background: var(--mint); }
+    .google-link { padding: 8px 12px; font-size: .85rem; }
+    .vote-note { min-height: 1.3em; margin: 9px 0 0; color: var(--muted); font-size: .8rem; }
+    .empty { grid-column: 1 / -1; padding: 36px 20px; border: 1px dashed #c8d3cb; border-radius: 16px; color: var(--muted); text-align: center; }
+
+    .how { display: grid; grid-template-columns: 1.1fr 1fr; gap: 30px; margin: 52px 0; padding: 28px; border-radius: 18px; background: #e9eee9; }
+    .how h2 { margin: 0 0 8px; font-size: 1.6rem; letter-spacing: -.04em; }
+    .how p { margin: 0; color: #526159; }
+    .how ul { margin: 0; padding-left: 1.2rem; color: #43564c; }
+    .how li + li { margin-top: 7px; }
+    footer { display: flex; justify-content: space-between; gap: 20px; padding: 22px 0 36px; border-top: 1px solid var(--line); color: var(--muted); font-size: .85rem; }
+    footer p { margin: 0; }
+
+    @media (max-width: 720px) {
+      .wrap { width: min(100% - 28px, 560px); }
+      .top-note { max-width: 150px; text-align: right; }
+      .hero { border-radius: 20px; }
+      .search { flex-direction: column; }
+      .search button { min-height: 48px; }
+      .section-head { align-items: start; flex-direction: column; margin-top: 40px; }
+      .cards, .how { grid-template-columns: 1fr; }
+      .how { gap: 18px; }
+      footer { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <header class="wrap topbar">
+    <a class="brand" href="#" aria-label="Unstuck home"><span class="brand-mark" aria-hidden="true">u</span>unstuck</a>
+    <span class="top-note">Small steps. Clear answers. No sign-up.</span>
+  </header>
+
+  <main class="wrap">
+    <section class="hero" aria-labelledby="main-title">
+      <p class="eyebrow">Everyday tech, made less frustrating</p>
+      <h1 id="main-title">Let's get you unstuck.</h1>
+      <p class="hero-copy">Practical, step-by-step fixes for common technology problems. Start with a question or browse the guides.</p>
+      <form class="search" id="search-form" role="search">
+        <label class="sr-only" for="question">What are you trying to fix?</label>
+        <input id="question" type="search" placeholder="e.g. Wi-Fi says connected but nothing loads" autocomplete="off">
+        <button type="submit">Find an answer</button>
+      </form>
+      <p class="search-hint" id="search-hint" aria-live="polite">Search the guides here. If we don't have it yet, submit your question to search Google.</p>
+    </section>
+
+    <section aria-labelledby="guides-title">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Start here</p>
+          <h2 id="guides-title">Starter guides</h2>
+          <p>Short steps first, official help if you need more.</p>
+        </div>
+      </div>
+
+      <div class="filters" role="group" aria-label="Filter answers by topic">
+        <button class="filter" type="button" data-filter="all" aria-pressed="true">All guides</button>
+        <button class="filter" type="button" data-filter="wifi" aria-pressed="false">Wi-Fi</button>
+        <button class="filter" type="button" data-filter="chrome" aria-pressed="false">Chrome</button>
+      </div>
+
+      <div class="cards" id="cards">
+        <article class="card" data-topic="wifi" data-search="wifi wi-fi connected no internet windows internet offline router modem airplane mode forget reconnect">
+          <div class="card-top"><span class="tag">Wi-Fi · Windows</span><span class="time">About 5 minutes</span></div>
+          <h3>Wi-Fi is connected, but there’s no internet</h3>
+          <p class="summary">First check whether the problem affects just this PC or every device on the network.</p>
+          <ol class="steps">
+            <li>On another device using the same Wi-Fi, try opening a website. If that also fails, restart the modem and router; wait for them to reconnect.</li>
+            <li>On your PC, confirm Wi-Fi is on and Airplane mode is off.</li>
+            <li>If only this PC is affected, forget the network in <strong>Settings → Network &amp; internet → Wi-Fi → Manage known networks</strong>, then reconnect with the password.</li>
+            <li>On Windows 11, run the <strong>Network and Internet troubleshooter</strong> in the Get Help app.</li>
+          </ol>
+          <p class="caution">Restarting the router briefly disconnects everyone using that Wi-Fi. On a work or school device, contact your administrator before changing network settings.</p>
+          <p class="source">Verified against <a href="https://support.microsoft.com/en-us/windows/experience/connectivity-networking/fix-wi-fi-connection-issues-in-windows" target="_blank" rel="noopener noreferrer">Microsoft’s Windows Wi-Fi guide</a>.</p>
+          <div class="card-actions" aria-label="Rate this answer">
+            <button class="vote" type="button" data-vote="helpful">This helped</button>
+            <button class="vote" type="button" data-vote="stuck">Still stuck</button>
+            <a class="google-link" href="https://www.google.com/search?q=Windows+Wi-Fi+connected+no+internet+troubleshooting" target="_blank" rel="noopener noreferrer">More options ↗</a>
+          </div>
+          <p class="vote-note" aria-live="polite"></p>
+        </article>
+
+        <article class="card" data-topic="chrome" data-search="chrome browser website page not loading error connection timeout err internet disconnected site won't open">
+          <div class="card-top"><span class="tag">Chrome · Browser</span><span class="time">About 3 minutes</span></div>
+          <h3>A website won’t load in Chrome</h3>
+          <p class="summary">The error code is a clue. Check whether it’s one website or every website before changing settings.</p>
+          <ol class="steps">
+            <li>Try another website. If none load, check your internet connection first.</li>
+            <li>Reload the page. If it still fails, note the exact error (for example, <strong>ERR_NAME_NOT_RESOLVED</strong> or <strong>ERR_CONNECTION_TIMED_OUT</strong>).</li>
+            <li>If only one site fails, try again later or contact that site’s owner; the problem may be on their side.</li>
+            <li>If Chrome says “Connect to network,” sign in to the Wi-Fi network’s welcome page. On a work device, ask your administrator about certificate or proxy errors.</li>
+          </ol>
+          <p class="caution">Don’t bypass a certificate warning or install a certificate from an untrusted source. On managed devices, ask your organization’s support team.</p>
+          <p class="source">Verified against <a href="https://support.google.com/chrome/answer/95669?hl=en" target="_blank" rel="noopener noreferrer">Google Chrome’s common error guide</a> and its <a href="https://support.google.com/chrome/answer/6098869?hl=en" target="_blank" rel="noopener noreferrer">connection troubleshooting steps</a>.</p>
+          <div class="card-actions" aria-label="Rate this answer">
+            <button class="vote" type="button" data-vote="helpful">This helped</button>
+            <button class="vote" type="button" data-vote="stuck">Still stuck</button>
+            <a class="google-link" href="https://www.google.com/search?q=Chrome+website+won%27t+load+error+help" target="_blank" rel="noopener noreferrer">More options ↗</a>
+          </div>
+          <p class="vote-note" aria-live="polite"></p>
+        </article>
+      </div>
+    </section>
+
+    <aside class="how" aria-labelledby="approach-title">
+      <div>
+        <p class="eyebrow">Built to improve</p>
+        <h2 id="approach-title">Good answers should know their limits.</h2>
+        <p>Google doesn’t publish a public ranking of search answers by user dissatisfaction. These starter guides address practical support questions and link to the official instructions they’re based on.</p>
+      </div>
+      <ul>
+        <li>Try the simplest, lowest-risk checks first.</li>
+        <li>Follow the linked source for device-specific or newer steps.</li>
+        <li>Use “Still stuck” to mark a guide on this device; this prototype does not send or aggregate votes.</li>
+      </ul>
+    </aside>
+  </main>
+
+  <footer class="wrap">
+    <p>Unstuck is an independent starter guide, not affiliated with Google, Microsoft, or other manufacturers.</p>
+    <p>Free to use · No accounts · No tracking</p>
+  </footer>
+
+  <script>
+    (function () {
+      const cards = Array.from(document.querySelectorAll(".card"));
+      const searchForm = document.getElementById("search-form");
+      const searchInput = document.getElementById("question");
+      const searchHint = document.getElementById("search-hint");
+      const filters = Array.from(document.querySelectorAll(".filter"));
+      let activeFilter = "all";
+
+      function applyFilters() {
+        const query = searchInput.value.trim().toLowerCase();
+        let visible = 0;
+
+        cards.forEach(function (card) {
+          const matchesQuery = !query || (card.textContent + " " + card.dataset.search).toLowerCase().includes(query);
+          const matchesTopic = activeFilter === "all" || card.dataset.topic === activeFilter;
+          card.hidden = !(matchesQuery && matchesTopic);
+          if (!card.hidden) visible += 1;
+        });
+
+        let empty = document.getElementById("empty-state");
+        if (!visible && !empty) {
+          empty = document.createElement("p");
+          empty.id = "empty-state";
+          empty.className = "empty";
+          empty.textContent = "No matching guide yet. Press “Find an answer” to search Google for this exact question.";
+          document.getElementById("cards").appendChild(empty);
+        } else if (visible && empty) {
+          empty.remove();
+        }
+
+        searchHint.textContent = visible
+          ? "Showing " + visible + (visible === 1 ? " guide." : " guides.") + " Not quite right? Search the web for your exact question."
+          : "No guide matches yet. Press “Find an answer” to search Google for current help.";
+      }
+
+      filters.forEach(function (button) {
+        button.addEventListener("click", function () {
+          activeFilter = button.dataset.filter;
+          filters.forEach(function (filter) {
+            filter.setAttribute("aria-pressed", String(filter === button));
+          });
+          applyFilters();
+        });
+      });
+
+      searchInput.addEventListener("input", applyFilters);
+      searchForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+        const query = searchInput.value.trim();
+        if (!query) {
+          searchInput.focus();
+          return;
+        }
+        applyFilters();
+        if (!cards.some(function (card) { return !card.hidden; })) {
+          window.open("https://www.google.com/search?q=" + encodeURIComponent(query), "_blank", "noopener,noreferrer");
+        } else {
+          document.getElementById("cards").scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
+
+      cards.forEach(function (card) {
+        const storageKey = "unstuck-feedback-" + card.dataset.topic;
+        const note = card.querySelector(".vote-note");
+        const buttons = Array.from(card.querySelectorAll(".vote"));
+
+        function showSavedVote() {
+          try {
+            const saved = window.localStorage.getItem(storageKey);
+            buttons.forEach(function (button) {
+              button.setAttribute("aria-pressed", String(button.dataset.vote === saved));
+            });
+            if (saved) {
+              note.textContent = saved === "helpful"
+                ? "Thanks — this vote is saved only in this browser."
+                : "Marked for follow-up on this device. Your vote is not sent or shared.";
+            }
+          } catch (error) {
+            console.error("Could not read local feedback storage.", error);
+            note.textContent = "Your browser blocked local storage, so this vote can't be saved. Nothing was sent.";
+          }
+        }
+
+        buttons.forEach(function (button) {
+          button.addEventListener("click", function () {
+            try {
+              window.localStorage.setItem(storageKey, button.dataset.vote);
+              showSavedVote();
+            } catch (error) {
+              console.error("Could not save local feedback.", error);
+              note.textContent = "Your browser blocked local storage, so this vote can't be saved. Nothing was sent.";
+            }
+          });
+        });
+        showSavedVote();
+      });
+    }());
+  </script>
+</body>
+</html>
