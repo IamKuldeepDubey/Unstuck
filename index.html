@@ -102,6 +102,9 @@
     .vote[aria-pressed="true"] { border-color: var(--green); background: var(--mint); }
     .google-link { padding: 8px 12px; font-size: .85rem; }
     .vote-note { min-height: 1.3em; margin: 9px 0 0; color: var(--muted); font-size: .8rem; }
+    .request-template { margin-top: 15px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px; color: #43564c; }
+    .request-template summary { color: var(--green-dark); font-weight: 700; cursor: pointer; }
+    .request-template pre { max-height: 360px; overflow: auto; white-space: pre-wrap; overflow-wrap: anywhere; font: .82rem/1.55 Consolas, monospace; }
     .empty { grid-column: 1 / -1; padding: 36px 20px; border: 1px dashed #c8d3cb; border-radius: 16px; color: var(--muted); text-align: center; }
 
     .how { display: grid; grid-template-columns: 1.1fr 1fr; gap: 30px; margin: 52px 0; padding: 28px; border-radius: 18px; background: #e9eee9; }
@@ -157,6 +160,7 @@
         <button class="filter" type="button" data-filter="all" aria-pressed="true">All guides</button>
         <button class="filter" type="button" data-filter="wifi" aria-pressed="false">Wi-Fi</button>
         <button class="filter" type="button" data-filter="chrome" aria-pressed="false">Chrome</button>
+        <button class="filter" type="button" data-filter="bank-lien" aria-pressed="false">Bank account hold · India</button>
       </div>
 
       <div class="cards" id="cards">
@@ -199,6 +203,50 @@
           </div>
           <p class="vote-note" aria-live="polite"></p>
         </article>
+
+        <article class="card" data-topic="bank-lien" data-search="india bank account lien frozen freeze hold debit block cyber crime cybercrime complaint 1930 unfreeze police investigation transaction UTR">
+          <div class="card-top"><span class="tag">India · Bank account hold</span><span class="time">Allow time to gather records</span></div>
+          <h3>Bank account lien or freeze after a cybercrime complaint (1930): what to do</h3>
+          <p class="summary">A restriction is not, by itself, proof that you did anything wrong. The bank may be acting on an instruction linked to a reported transaction. Find out who issued it, then make a documented request through official channels.</p>
+          <ol class="steps">
+            <li><strong>Ask your bank for the exact restriction.</strong> Through its official app, branch, or customer-care channel, ask whether this is a lien on a specific amount or a debit freeze on some/all of the account. Request the amount, transaction date and UTR/reference, bank complaint number, issuing police/cybercrime authority and State/UT, investigating officer/contact, and how to submit documents. The bank may be limited in what it can disclose.</li>
+            <li><strong>Keep relevant records together.</strong> Save the bank alert, statements for the relevant period, transaction/UTR details, invoices or agreements, messages, and evidence showing the source and purpose of the money. Provide identity/KYC documents only if requested through a verified channel. Keep copies and acknowledgements.</li>
+            <li><strong>Write to the bank and the issuing authority.</strong> Ask the bank’s grievance/nodal officer how to lodge a representation and whether it can forward it to the authority. Send a concise, factual representation to the investigating officer or cybercrime/police contact named by the bank. Explain the transaction and attach relevant proof; ask for review and release of the hold, or release of unaffected funds/restriction to the disputed amount if legally permissible.</li>
+            <li><strong>If you are the fraud victim, report it promptly.</strong> Call India’s financial cyber-fraud helpline <strong>1930</strong>. If you receive an acknowledgement number, I4C says to complete the formal complaint at <a href="https://cybercrime.gov.in/" target="_blank" rel="noopener noreferrer">cybercrime.gov.in</a> within 24 hours using that number. Save the acknowledgement and track the complaint on the portal. The complaint is handled by the relevant State/UT law-enforcement agency.</li>
+            <li><strong>Escalate through the right route.</strong> For poor communication or handling by the bank, use its official grievance process; RBI’s <a href="https://cms.rbi.org.in/" target="_blank" rel="noopener noreferrer">Complaint Management System</a> is for eligible complaints against regulated entities. A bank-service complaint is not a substitute for asking the police authority—or, with advice from a local lawyer, a competent court—to review a police-directed hold.</li>
+          </ol>
+          <p class="caution"><strong>Protect yourself:</strong> Never pay an “agent” or caller who promises to unfreeze the account. Don’t share OTPs, PINs, passwords, or remote-access codes. Don’t move funds to evade a restriction, make a false statement, or delete records. Use contact details from the bank’s official website/app or a written notice—not an unsolicited caller or search ad.</p>
+          <details class="request-template">
+            <summary>Open a request template</summary>
+            <pre>Subject: Request for details and review of account restriction — account ending [last 4 digits]
+
+Dear [Bank grievance officer / Investigating Officer],
+
+On [date], I was informed that [a lien of ₹___ / a debit restriction] was placed on my account ending [last 4 digits]. The reference provided was [reference, if available].
+
+Please confirm, to the extent you may disclose:
+1. The type and amount of the restriction;
+2. The transaction/UTR and complaint or case reference involved;
+3. The issuing authority and the official process for submitting evidence.
+
+I believe the relevant funds are [brief factual explanation]. I have attached [list relevant records]. Please acknowledge this representation and advise how I may provide any further information. I request review and release of the restriction, or of any unaffected funds, if permissible.
+
+I will cooperate with the investigation. Please reply through the official contact channel.
+
+Name:
+Registered mobile/email:
+Bank complaint/reference number:
+Date:</pre>
+          </details>
+          <p class="source">Sources: <a href="https://i4c.mha.gov.in/faq.aspx" target="_blank" rel="noopener noreferrer">I4C (Ministry of Home Affairs) FAQ</a>, <a href="https://cybercrime.gov.in/" target="_blank" rel="noopener noreferrer">National Cyber Crime Reporting Portal</a>, and <a href="https://www.rbi.org.in/Scripts/Complaints.aspx" target="_blank" rel="noopener noreferrer">RBI complaints information</a>.</p>
+          <p class="caution">There is no universal release timeline or guaranteed outcome. Procedure depends on the authority, facts, and any case or court directions. This is general information, not legal advice; consult an Indian lawyer for a disputed freeze, urgent hardship, or a notice/summons.</p>
+          <div class="card-actions" aria-label="Rate this answer">
+            <button class="vote" type="button" data-vote="helpful">This helped</button>
+            <button class="vote" type="button" data-vote="stuck">Still stuck</button>
+            <a class="google-link" href="https://cybercrime.gov.in/" target="_blank" rel="noopener noreferrer">Official cybercrime portal ↗</a>
+          </div>
+          <p class="vote-note" aria-live="polite"></p>
+        </article>
       </div>
     </section>
 
@@ -217,7 +265,7 @@
   </main>
 
   <footer class="wrap">
-    <p>Unstuck is an independent starter guide, not affiliated with Google, Microsoft, or other manufacturers.</p>
+    <p>Unstuck is an independent guide, not affiliated with Google, Microsoft, banks, police, I4C, or RBI.</p>
     <p>Free to use · No accounts · No tracking</p>
   </footer>
 
