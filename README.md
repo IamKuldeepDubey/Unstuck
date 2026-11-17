@@ -8,12 +8,12 @@ Open `index.html` in a browser. The site has no build step, dependencies, accoun
 
 ## Publish with GitHub Pages
 
-1. Create a GitHub repository you control and add the contents of this folder to its root.
-2. In the repository, open **Settings → Pages**.
-3. Under **Build and deployment**, choose **Deploy from a branch**, select `main` and `/(root)`, then save.
-4. GitHub will show the public URL when the first deployment finishes.
+The site is configured to publish from the `main` branch at the repository root.
 
-This project is not connected to a repository or hosting account yet, so it has not been published. GitHub Pages can host a static site at no charge under its current plan and usage limits; public availability and terms are controlled by GitHub.
+- Website: <https://iamkuldeepdubey.github.io/Unstuck/>
+- Source: <https://github.com/IamKuldeepDubey/Unstuck>
+
+GitHub Pages hosting uses the free `github.io` address and current plan/usage limits. A custom domain is optional and is not configured.
 
 ## Scope and trust
 
